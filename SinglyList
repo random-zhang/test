@@ -1,0 +1,92 @@
+public class SinglyList<T>extends Object {
+	public Node<T> head;
+public SinglyList(){
+	this.head=new Node<T>();
+}
+public SinglyList(T[] values){
+	this();
+	Node<T>rear=this.head;
+	for(int i=0;i<values.length;i++){
+		rear.next=new Node<T>(values[i],null);
+		rear=rear.next;
+	}
+}
+public boolean isEmpty(){
+	return this.head.next==null;
+}
+public String toString(){
+	String str=this.getClass().getName()+"(";
+	for(Node<T>p=this.head.next;p!=null;p=p.next){
+		str+=p.data.toString();
+		if(p.next!=null){
+			str+=",";
+		}
+	}
+	return str+")";
+}
+/**
+ * 该类用于反转链表
+ */
+public void reverse(SinglyList<T> list){
+	//SinglyList<T> newList=new SinglyList<T>();
+	Node<T>front=null;
+	Node<T>current=list.head.next;
+	Node<T>n=list.head.next.next;
+	this.head.next=null;
+	while(current!=null){
+		current.next=front;
+		head.next=new Node<T>(current.data,front);
+		front=current;
+		current=n;
+		if(n!=null)  n=n.next;
+	}
+	System.out.println("循环终止");
+}
+/**
+ * 深拷贝
+ */
+public void deapCopy(SinglyList<T>list){
+	Node<T>list_front=list.head.next;
+	Node<T>front=this.head;
+	//Node<T>p=this.head;
+	while(list_front!=null){
+		front.next=new Node<T>(list_front.data,null);
+		//System.out.println(list_front.next.data);
+		front=front.next;
+		list_front=list_front.next;
+		System.out.println(front.data);
+		
+	}
+}
+public static void main(String[] args){
+	System.out.println("测试反转");
+	Integer[] array1={1,2,3,4,5,6,7};
+	Integer[] array2={1,2,3,4,5,6,7,8,9};
+	SinglyList<Integer> list=new SinglyList<Integer>(array1);
+	System.out.println(list.toString());
+	SinglyList<Integer> list2=new SinglyList<Integer>();
+	list2.reverse(list);
+	System.out.println(list2.toString());
+	System.out.println("测试深复制");
+	SinglyList<Integer> list3=new SinglyList<Integer>(array2);
+	SinglyList<Integer> list4=new SinglyList<Integer>();
+	list4.deapCopy(list3);
+	System.out.println(list4.toString());
+}
+@SuppressWarnings("hiding")
+private class Node<T> {
+public T data;
+public Node<T> next;
+public Node(T data,Node<T> next){
+	this.data=data;
+	this.next=next;
+}
+public Node(){
+	this(null,null);
+}
+public String toString(){
+	return this.data.toString();
+}
+}
+}
+
