@@ -1,0 +1,21 @@
+package mypacakge;
+
+public  class VIPAccount extends BankAccount 
+{public VIPAccount()
+	{
+	super();
+	}
+public VIPAccount(int acountnumber,String name,int time,String idnumber,double blanace)
+    {
+	super(acountnumber,name,time,idnumber,blanace);
+    }
+public VIPAccount(VIPAccount a)
+    {
+	super(a.acountnumber,a.name,a.time,a.idnumber,a.blanace);
+    }
+public void Interest(double d)
+    {
+	interest=blanace*0.085*d;
+	this.blanace+=interest;
+	}
+}
