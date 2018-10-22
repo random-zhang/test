@@ -1,0 +1,66 @@
+package mypacakge;
+public abstract class BankAccount 
+{
+	int acountnumber;String name;int time;String idnumber;double blanace;double interest;
+	
+	public BankAccount(int acountnumber,String name,int time,String idnumber,double blanace)
+	{
+		this.acountnumber=acountnumber;
+		this.name=name;
+		this.time=time;
+		this.idnumber=idnumber;
+		this.blanace=blanace;
+	}
+	public BankAccount()
+	{
+		this(0,null,0,null,0);
+	}
+	public BankAccount(BankAccount a)
+	{
+		this(a.acountnumber,a.name,a.time,a.idnumber,a.blanace);
+	}
+	public void putin(double m)
+	{
+		this.blanace=blanace+m;	
+	}
+	public void getout(double m) 
+	{
+		if(m>=0&&m<this.blanace)
+			this.blanace=blanace-m;
+		else this.blanace=0;		 
+	}
+	public String toString()
+	{
+		return "账号"+this.acountnumber+"储户姓名"+this.name+"开户时间"+this.time+"身份证号码"+this.idnumber+"存款余额"+this.blanace;
+	}
+	public void finalize()
+	{
+		System.out.println("销户成功！");
+	}
+	public abstract void Interest(double d);
+	public static void main(String args[])
+	
+	{
+		BankAccount p1=new VIPAccount(202171215,"黄亚君",20180914,"321283199905223814",500);
+		System.out.println("你创建的新账户；"+p1.toString());
+		p1.putin(100);
+		System.out.println("账户明细"+p1.toString());
+		p1.getout(200);
+		p1.Interest(1);
+		System.out.println("账户明细"+p1.toString());
+		p1.finalize();
+		BankAccount p2=new BlackAccount(202171234,"袁昊",20181008,"null",500);
+		System.out.println("你创建的新账户；"+p2.toString());
+		p2.putin(100);
+		System.out.println("账户明细"+p2.toString());
+		p2.getout(200);
+		p2.Interest(1);
+		System.out.println("账户明细"+p2.toString());
+		p2.finalize();
+		
+	}
+	
+
+}
+
+
